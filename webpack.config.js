@@ -13,16 +13,16 @@ module.exports = () => {
         },
         module: {
             rules: [
-                { test: /\.js$/, exclude: /node_module/, loader: 'babel-loader' },
+                { test: /\.jsx?$/, exclude: /node_module/, loader: 'babel-loader' },
                 { test: /\.scss$/, exclude: /node_module/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-                { test: /\.png$/, include: /pwa/, use: [ 'file-loader?name=[name].[ext]' ] },
+                { test: /\.png$/, include: /pwa/, use: ['file-loader?name=[name].[ext]'] },
                 {
                     type: 'javascript/auto',
                     test: [
                         resolve(__dirname, 'src/pwa/'),
                     ],
-                    use: [ 'file-loader?name=[name].[ext]' ]                
-                  },
+                    use: ['file-loader?name=[name].[ext]'],
+                },
 
             ],
         },
@@ -36,13 +36,13 @@ module.exports = () => {
             }),
             new CopyWebpackPlugin([
                 { from: 'src/pwa/' },
-            ])
+            ]),
         ],
         resolve: {
             alias: {
                 _Styles: resolve(__dirname, 'src/_Styles'),
                 Actions: resolve(__dirname, 'src/Actions'),
-                Components: resolve(__dirname, 'src/Components'),
+                components: resolve(__dirname, 'src/components'),
                 config: resolve(__dirname, 'config.js'),
                 Store: resolve(__dirname, 'src/Store'),
                 src: resolve(__dirname, 'src'),
@@ -50,7 +50,7 @@ module.exports = () => {
         },
         devServer: {
             historyApiFallback: true,
-            port: 3000
+            port: 3000,
         },
         devtool: 'eval-source-map',
     };
