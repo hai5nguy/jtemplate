@@ -7,7 +7,7 @@
     "test": "jest --watch",
     "start": "webpack serve",
     "build": "webpack --mode production",
-    "deploy": "npm install && webpack -p --mode production && node server.js"
+    "deploy": "npm install && webpack -p --mode=production && node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/ProjectSunday/koalatapp#readme",
   "dependencies": {
+    "@babel/runtime": "^7.0.0",
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-eslint": "^9.0.0",
     "classnames": "^2.2.6",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
@@ -31,6 +31,7 @@
     "graphql-tag": "^2.9.2",
     "html-webpack-plugin": "^3.2.0",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.9.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -42,11 +43,14 @@
     "url-loader": "^1.1.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-syntax-class-properties": "^7.0.0",
+    "@babel/plugin-syntax-decorators": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
     "copy-webpack-plugin": "^4.5.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",

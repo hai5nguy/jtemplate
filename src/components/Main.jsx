@@ -2,25 +2,15 @@ import React from 'react'
 import classNames from 'classnames'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import Divider from '@material-ui/core/Divider'
 import { withStyles } from '@material-ui/core'
 
-import { AppDrawer, Field, TopBar } from 'components'
+import { Field } from 'components'
 
 const styles = {
-    container: {
+    root: {
         display: 'flex',
         flexDirection: 'column',
         overscrollBehavior: 'contain',
-    },
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'green',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     },
     label: {
         textTransform: 'capitalize',
@@ -38,6 +28,7 @@ const styles = {
     },
     buttonContainer: {
         display: 'flex',
+        maxWidth: 500,
         justifyContent: 'space-between',
     },
 };
@@ -102,59 +93,18 @@ class Main extends React.Component {
         const { classes } = this.props
         const { message, previewing, previewMessage, fields } = this.state
         return (
-            <div className={classNames(classes.container)}>
-                <AppDrawer />
+            <div className={classNames(classes.root)}>
                 {
                     fields.map((f, i) => (
                         <Field key={i} {...f} onChange={this.handleFieldChange(f.name)} />
                     ))
                 }
-
-                {/* <TextField
-                    id="name"
-                    label="Name"
-                    //   className={classes.textField}
-                    value={fields.blah}
-                    onChange={this.fieldChange('blah')}
-                    margin="normal"
-                />
-                <TextField
-                    id="name"
-                    label="Name"
-                    //   className={classes.textField}
-                    value="blah"
-                    //   onChange={this.handleChange('name')}
-                    margin="normal"
-                />
-                */}
-                {/* <Divider />
-                <div>
-                    <TextField
-                        id="name"
-                        label="New Field Name"
-                        //   className={classes.textField}
-                        // value="New Field Name"
-                        //   onChange={this.handleChange('name')}
-                        margin="normal"
-                    />
-                    <Button
-                        className={classNames(classes.add)}
-                        variant="contained"
-                        color="primary"
-                    >
-                    Add
-                    </Button>
-                </div>
-                <Divider /> */}
                 <TextField
                     label="Template"
                     multiline
-                    //   className={classes.textField}
-                    // value="blah"
                     onChange={this.handleTemplateChange}
                     value={previewing ? previewMessage : message}
                     margin="normal"
-                    // className={classNames(previewing && classes.previewing)}
                     InputProps={{
                         classes: {
                             root: previewing && classes.previewing,
@@ -164,6 +114,7 @@ class Main extends React.Component {
                 <div className={classNames(classes.buttonContainer)}>
                     <Button
                         className={classNames(classes.copy)}
+                        size="large"
                         variant="contained"
                         color="primary"
                         onClick={this.handleCopy}
@@ -172,6 +123,7 @@ class Main extends React.Component {
                     </Button>
                     <Button
                         className={classNames(classes.preview)}
+                        size="large"
                         variant="contained"
                         color="primary"
                         onClick={this.handlePreview}

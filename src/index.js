@@ -2,10 +2,10 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-import { Main } from 'components'
+import { Root } from 'components'
 
-// import { Provider } from 'react-redux';
 // import { createMuiTheme, MuiThemeProvider, CssBaseline } from '@material-ui/core';
 
 // import './manifest.json'
@@ -15,11 +15,11 @@ import { Main } from 'components'
 // import './_Styles/Index.scss';
 
 
-// import store from './Store';
+import store from 'store'
 
 // const App = () => (
 //     <MuiThemeProvider theme={theme}>
-//         <CssBaseline />
+//         <CssBaseline /
 //         <Provider store={store}>
 //             <Routes />
 //         </Provider>
@@ -27,9 +27,9 @@ import { Main } from 'components'
 // );
 
 const App = () => (
-    <div>
-        <Main />
-    </div>
+    <Provider store={store}>
+        <Root />
+    </Provider>
 )
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-module.exports = () => {
+module.exports = (_, env) => {
     const config = {
         mode: 'development',
         entry: './src/index',
@@ -13,17 +13,16 @@ module.exports = () => {
         },
         module: {
             rules: [
-                { test: /\.jsx?$/, exclude: /node_module/, loader: 'babel-loader' },
+                { test: /\.jsx?$/,
+                    exclude: /node_module/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            plugins: ['@babel/plugin-syntax-class-properties', '@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties'],
+                            presets: ['@babel/preset-env', '@babel/preset-react'],
+                        },
+                    } },
                 { test: /\.scss$/, exclude: /node_module/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-                { test: /\.png$/, include: /pwa/, use: ['file-loader?name=[name].[ext]'] },
-                {
-                    type: 'javascript/auto',
-                    test: [
-                        resolve(__dirname, 'src/pwa/'),
-                    ],
-                    use: ['file-loader?name=[name].[ext]'],
-                },
-
             ],
         },
         plugins: [
@@ -34,19 +33,16 @@ module.exports = () => {
                 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
                 'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:9001/graphql'),
             }),
-            new CopyWebpackPlugin([
-                { from: 'src/pwa/' },
-            ]),
         ],
         resolve: {
             alias: {
-                _Styles: resolve(__dirname, 'src/_Styles'),
-                Actions: resolve(__dirname, 'src/Actions'),
+                actions: resolve(__dirname, 'src/actions'),
                 components: resolve(__dirname, 'src/components'),
                 config: resolve(__dirname, 'config.js'),
-                Store: resolve(__dirname, 'src/Store'),
+                store: resolve(__dirname, 'src/store'),
                 src: resolve(__dirname, 'src'),
             },
+            extensions: ['.js', '.jsx'],
         },
         devServer: {
             historyApiFallback: true,
@@ -54,6 +50,15 @@ module.exports = () => {
         },
         devtool: 'eval-source-map',
     };
+
+    if (env.mode === 'production') {
+        console.log('prooddd')
+        config.plugins.push(
+            new CopyWebpackPlugin([
+                { from: 'src/pwa/' },
+            ]),
+        )
+    }
 
     return config;
 };

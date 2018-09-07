@@ -26,6 +26,8 @@ module.exports = {
         "object-shorthand": 0,
         "no-underscore-dangle": 0,
         "semi": 0,
+        "react/no-multi-comp": 0,
+        "react/sort-comp": 0,
     },
     "settings": {
         "import/resolver": {
