@@ -1,7 +1,14 @@
-// import * as ProfileActions from './ProfileActions';
-// import * as AuthActions from './AuthActions';
-// import * as KoalaApi from './KoalaApi';
-import * as FieldsActions from './fields-actions'
+import loadAppData from './load-app-data'
+import saveAppData from './save-app-data'
+
+import addNewField from './fields/add-new-field'
+import removeField from './fields/remove-field'
+import setFields from './fields/set-fields'
+import setFieldValue from './fields/set-field-value'
+
+import setTemplate from './template/set-template'
+
 import setActiveView from './ui/set-active-view'
 
-export { setActiveView };
+
+export { addNewField, loadAppData, removeField, saveAppData, setActiveView, setFields, setFieldValue, setTemplate }

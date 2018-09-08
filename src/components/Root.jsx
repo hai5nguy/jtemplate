@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core'
 
 import { Main, TopBar, ManageFields } from 'components'
+import { loadAppData } from 'actions'
 
 const styles = {
     root: {
@@ -13,6 +14,11 @@ const styles = {
 };
 
 class Root extends React.Component {
+    constructor() {
+        super()
+        loadAppData()
+    }
+
     render() {
         const { activeView, classes } = this.props
         return (

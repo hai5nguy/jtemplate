@@ -3,11 +3,14 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
-// import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 
-const styles = {
+import { setFieldValue } from 'actions'
 
+const styles = {
+    root: {
+        marginTop: '10px',
+    },
 }
 
 class Field extends React.Component {
@@ -18,23 +21,23 @@ class Field extends React.Component {
         }
     }
 
-    handleChange = (e) => {
+    valueChange = (e) => {
         this.setState({
             value: e.currentTarget.value,
         })
     }
 
-    handleBlur = () => {
-        this.props.onChange(this.state.value)
+    valueBlur = () => {
+        setFieldValue(this.props.index, this.state.value)
     }
 
     render() {
-        const { name } = this.props
+        const { classes, name } = this.props
         const { value } = this.state
         return (
-            <FormControl>
-                <InputLabel htmlFor="name-simple">{name} {this.props.value}</InputLabel>
-                <Input value={value} onBlur={this.handleBlur} onChange={this.handleChange} />
+            <FormControl className={classes.root}>
+                <InputLabel htmlFor="name-simple">{name}</InputLabel>
+                <Input value={value} onBlur={this.valueBlur} onChange={this.valueChange} />
             </FormControl>
         )
     }

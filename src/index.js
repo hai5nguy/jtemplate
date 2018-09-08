@@ -17,6 +17,11 @@ import { Root } from 'components'
 
 import store from 'store'
 
+
+/* globals */
+window.HEIGHT_OF_FIELD = 60
+window.TOUCH_AND_DRAG_OVER_DELAY = 100
+
 // const App = () => (
 //     <MuiThemeProvider theme={theme}>
 //         <CssBaseline /

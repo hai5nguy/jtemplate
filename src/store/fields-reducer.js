@@ -1,14 +1,29 @@
 // import cloneDeep from 'lodash.clonedeep';
 
 const initialState = [
-    { name: 'field1' },
-    { name: 'fieldTwo' },
-    { name: 'Field-3' }
+    { name: 'cool-dude', value: 'Joshua' },
+    { name: 'Author', value: 'Hai Nagooyen' },
+    { name: 'versionNumber', value: '1.0' },
 ];
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'FIELDS_': {
-            return action.leaderboard;
+        case 'FIELDS_SET': {
+            return [...action.fields]
+        }
+        case 'FIELDS_SET_VALUE': {
+            const fields = [...state]
+            const { index, value } = action
+            const f = fields[index]
+            fields[index] = { ...f, value }
+            return fields
+        }
+        case 'FIELDS_ADD_NEW': {
+            return [...state, action.field]
+        }
+        case 'FIELDS_REMOVE_ONE': {
+            const fields = [...state]
+            fields.splice(action.index, 1)
+            return fields
         }
         default:
             return state;

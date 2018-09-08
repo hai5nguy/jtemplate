@@ -2,6 +2,7 @@
 
 const initialState = {
     activeView: 'MANAGE_FIELDS',
+    // activeView: 'MAIN',
 };
 export default (state = initialState, action) => {
     switch (action.type) {
