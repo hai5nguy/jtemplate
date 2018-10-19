@@ -9,7 +9,6 @@ import { loadAppData } from 'actions'
 
 const styles = {
     root: {
-        // touchAction: 'none'
     },
 };
 
@@ -22,7 +21,7 @@ class Root extends React.Component {
     render() {
         const { activeView, classes } = this.props
         return (
-            <div classes={classes.root}>
+            <div className={classes.root}>
                 <TopBar />
                 {
                     activeView === 'MANAGE_FIELDS'

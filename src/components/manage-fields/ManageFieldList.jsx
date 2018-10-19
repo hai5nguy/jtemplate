@@ -31,7 +31,7 @@ class ManageFieldList extends React.Component {
     }
 
     touchMove = (e) => {
-        e.stopPropagation()
+        e.preventDefault()
         if (this.state.dragIndex === null || e.timeStamp - this.timeStamp < window.TOUCH_AND_DRAG_OVER_DELAY) return
         this.timeStamp = e.timeStamp
         if (e.touches.length === 1) {
@@ -40,7 +40,7 @@ class ManageFieldList extends React.Component {
     }
 
     dragOver = (e) => {
-        e.stopPropagation()
+        e.preventDefault()
         if (this.state.dragIndex === null || e.timeStamp - this.timeStamp < window.TOUCH_AND_DRAG_OVER_DELAY) return
         this.timeStamp = e.timeStamp
         this.dragging(e.clientY)

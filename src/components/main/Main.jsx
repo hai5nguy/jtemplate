@@ -14,11 +14,9 @@ const styles = {
     root: {
         display: 'flex',
         flexDirection: 'column',
-        overscrollBehavior: 'contain',
         marginTop: '5px',
     },
-    label: {
-        textTransform: 'capitalize',
+    template: {
     },
     previewButton: {
         width: '49%',
@@ -92,6 +90,7 @@ class Main extends React.Component {
                     fields.map((f, i) => (<MainField key={i} index={i} {...f} />))
                 }
                 <TextField
+                    className={classes.template}
                     label="Template"
                     multiline
                     margin="normal"
@@ -110,7 +109,6 @@ class Main extends React.Component {
                     <Button className={classes.previewButton} size="large" variant="contained" color="primary" onClick={this.previewClick}>
                         { previewing ? 'Edit' : 'Preview' }
                     </Button>
-
                 </div>
             </div>
 

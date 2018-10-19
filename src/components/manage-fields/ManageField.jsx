@@ -2,7 +2,7 @@ import React from 'react'
 import { withStyles, FormControl, InputLabel, Input } from '@material-ui/core'
 import { DragIndicator, Close } from '@material-ui/icons'
 
-import { removeField } from 'actions'
+import { removeField, setFieldName } from 'actions'
 
 const styles = {
     root: {
@@ -40,18 +40,20 @@ const styles = {
 
 class ManageField extends React.Component {
     indicatorMouseDown = (e) => {
-        e.stopPropagation()
         e.currentTarget.parentNode.setAttribute('draggable', true)
     }
 
     dragEnd = (e) => {
-        e.stopPropagation()
         e.currentTarget.setAttribute('draggable', false)
         this.props.dragEnd()
     }
 
     closeClick = () => {
         removeField(this.props.index)
+    }
+
+    change = (e) => {
+        setFieldName(this.props.index, e.currentTarget.value)
     }
 
     render() {
@@ -71,8 +73,8 @@ class ManageField extends React.Component {
             >
                 <DragIndicator className={classes.dragIndicator} onMouseDown={this.indicatorMouseDown} />
                 <FormControl className={classes.inputContainer}>
-                    <InputLabel classes={{ root: classes.labelRoot }} htmlFor="field">Field</InputLabel>
-                    <Input id="field" className={classes.fieldName} value={name} />
+                    <InputLabel className={classes.labelRoot} htmlFor="field">Field</InputLabel>
+                    <Input id="field" className={classes.fieldName} value={name} onChange={this.change} />
                 </FormControl>
                 <Close className={classes.deleteButton} onClick={this.closeClick} />
             </div>

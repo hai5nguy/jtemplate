@@ -1,8 +1,8 @@
 // import cloneDeep from 'lodash.clonedeep';
 
 const initialState = {
-    activeView: 'MANAGE_FIELDS',
-    // activeView: 'MAIN',
+    // activeView: 'MANAGE_FIELDS',
+    activeView: 'MAIN',
 };
 export default (state = initialState, action) => {
     switch (action.type) {

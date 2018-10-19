@@ -10,11 +10,16 @@ export default (state = initialState, action) => {
         case 'FIELDS_SET': {
             return [...action.fields]
         }
+        case 'FIELDS_SET_NAME': {
+            const fields = [...state]
+            const { index, name } = action
+            fields[index].name = name
+            return fields
+        }
         case 'FIELDS_SET_VALUE': {
             const fields = [...state]
             const { index, value } = action
-            const f = fields[index]
-            fields[index] = { ...f, value }
+            fields[index].value = value
             return fields
         }
         case 'FIELDS_ADD_NEW': {
