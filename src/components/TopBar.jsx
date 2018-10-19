@@ -27,7 +27,7 @@ const styles = {
     headerText: {
         flexGrow: 1,
         userSelect: 'none',
-        fontSize: '30px'
+        fontSize: '30px',
     },
     menuButton: {
         marginLeft: -12,
